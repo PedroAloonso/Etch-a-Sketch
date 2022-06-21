@@ -1,0 +1,65 @@
+:root {
+    --color1: #1B1B1E;
+    --color2: #96031A;
+    --color3: #6D676E;
+    --color4: #FAA916;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background-color: var(--color1) ;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    height: 100vh;
+
+}
+
+.menu {
+    width: 250px;
+    text-align: ;
+}
+
+.menu h1 {
+    padding: 10px;
+}
+
+.menu p {
+    padding: 10px;
+}
+.menu label {
+    padding: 5px;
+}
+
+#colorpicker {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    border-width: 1px;
+}
+
+#screen {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    border: 1px solid var(--color2);
+}
+
+#pixel {
+    background-color: var(--color2);
+    width: auto;
+    height: 10px;
+}
