@@ -49,17 +49,32 @@ body {
     border-width: 1px;
 }
 
-#screen {
-    display: flex;
-    flex-wrap: wrap;
+.screen {
+    display: grid;
+    
     width: 600px;
     height: 600px;
     background-color: white;
     border: 1px solid var(--color2);
+    overflow: hidden;
+    
 }
 
-#pixel {
-    background-color: var(--color2);
-    width: auto;
-    height: 10px;
+.size64x64 {
+    grid-template-columns: repeat(64, 1fr);
+    grid-template-rows: repeat(64, 1fr);
 }
+
+.size16x16 {
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+.pixel {
+    background-color: white;
+
+}
+
+/*.pixel:hover {
+    background-color: var(--color4);
+}*/
