@@ -54,6 +54,7 @@ function grid(size = defaultSize) {
         let pixel = document.createElement('div');
         pixel.addEventListener('mousedown', changeColor);
         pixel.addEventListener('mouseover', changeColor);
+        pixel.style.userSelect = 'none'
         screen.appendChild(pixel);
     };    
 };    
