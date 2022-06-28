@@ -72,7 +72,6 @@ function reloadgrid() {
     makeGrid();
 };
 
-
 sizeChoice.onclick = reloadgrid
 clearBtn.onclick = reloadgrid
 colorChoice.onclick = () => {colorMode = defaultMode}
