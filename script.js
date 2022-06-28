@@ -79,10 +79,10 @@ rainbowBtn.onclick = () => {colorMode = 'rainbow'}
 eraserBtn.onclick = () => {colorMode = 'erase'}
 
 window.onload = () => {
-    makeGrid(defaultSize);
+    actualSize = defaultSize
     sizeChoice.value = 16
     actualColor = defaultColor
-    actualSize = defaultSize
     colorMode = defaultMode
     colorChoice.value = defaultColor
+    makeGrid(defaultSize);
 };
