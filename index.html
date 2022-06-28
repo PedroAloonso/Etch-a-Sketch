@@ -10,15 +10,23 @@
 <body>
     <div class="menu">
         <h1>Options</h1>
-        <p><label for="colorpicker">Color:</label>
-        <input type="color" id="colorpicker" value="#ffffff"></p>
-        <p> Size: 
-        <label for="size1"><input type="checkbox" id="size1" checked autocomplete="off">16x16</label>
-        <label for="size2"><input type="checkbox" id="size2" autocomplete="off">64x64</label>
+        <p>Color: <input type="color" id="colorpicker" class="teste" value="#FAA916"></p>
+        <p>Size: 
+         <select id="sizes">
+             <option value="2" class="values">2x2</option>
+             <option value="4" class="values">4x4</option>
+             <option value="8" class="values">8x8</option>
+             <option value="16" class="values">16x16</option>
+             <option value="64" class="values">64x64</option>
+             <option value="128" class="values">128x128</option>
+        </select>
         </p>
+        <button id="eraserbtn">Eraser</button>
+        <button id="clearbtn">Clear</button>
+        <button id="rainbowbtn">Rainbow</button>
     </div>
-    <div class="screen size16x16"> 
-
+    <div class="container">
+        <div class="screen"></div>
     </div>
     <script src="script.js"></script>
 </body>

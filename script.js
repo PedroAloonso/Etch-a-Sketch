@@ -1,47 +1,89 @@
-var objColor = document.querySelector('#colorpicker')
-objColor.addEventListener('blur', function () {
-    color = objColor.value
-})
-var color = '#ffffff'
-var screen = document.querySelector('.screen')
+const defaultColor = '#FAA916';
+const defaultSize = 16;
+const defaultMode = 'default';
 
-function create16x16Screen() {
-    let pixelId = 0
-    for(let i=0; i<16; i++){
-        for(let j=0; j<16; j++){
-            pixelId++
-            let pixel = document.createElement('div')
-            pixel.className = 'pixel'
-            pixel.id = `pixel${pixelId}`
-            screen.appendChild(pixel)
-        }
+var actualColor = defaultColor;
+var actualSize = defaultSize;
+var colorMode = defaultMode;
+
+var colorChoice = document.querySelector('#colorpicker');
+var sizeChoice = document.querySelector('#sizes');
+
+var screen = document.querySelector('.screen');
+var clearBtn = document.querySelector('#clearbtn');
+var rainbowBtn = document.querySelector('#rainbowbtn');
+var eraserBtn = document.querySelector('#eraserbtn');
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
+
+function takeActualSize(sizeValue) {
+    return Number(sizeValue)
+};
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+};
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+};
+
+function changeColor(e){
+    if (e.type === 'mouseover' && !mouseDown) return;
+    if (colorMode == 'rainbow') {
+        let randomR = Math.floor(Math.random() * 256);
+        let randomG = Math.floor(Math.random() * 256);
+        let randomB = Math.floor(Math.random() * 256);
+        colorChoice.value = `${rgbToHex(randomR,randomG,randomB)}`
+        e.target.style.backgroundColor = `rgb(${randomR},${randomG},${randomB})`;
+    } else if (colorMode == 'erase'){
+        e.target.style.backgroundColor = '#FFFFFF';
+        colorChoice.value = '#FFFFFF';
+    } else {
+        actualColor = colorChoice.value;
+        e.target.style.backgroundColor = actualColor;
     }
-}
+};
 
-function create64x64Screen() {
-    let pixelId = 0
-    for(let i=0; i<64; i++){
-        for(let j=0; j<64; j++){
-            pixelId++
-            let pixel = document.createElement('div')
-            pixel.className = 'pixel'
-            screen.appendChild(pixel)
-        }
-    }
-}
+function grid(size = defaultSize) {
+    screen.style.setProperty(`grid-template-columns`, `repeat(${size}, 1fr)`);
+    screen.style.setProperty(`grid-template-rows`, `repeat(${size}, 1fr)`);
+    for(let i = 0; i <= size**2; i++) {
+        let pixel = document.createElement('div');
+        pixel.addEventListener('mousedown', changeColor);
+        pixel.addEventListener('mouseover', changeColor);
+        screen.appendChild(pixel);
+    };    
+};    
 
-document.addEventListener('click', (e) => {
-    if(e.target.className == 'pixel'){
-        chose = document.querySelector(`#${e.target.id}`)
-        chose.style.setProperty('background-color', `${color}`, null)
-    }
-})
+function makeGrid() {
+    actualSize = takeActualSize(sizeChoice.value);
+    grid(actualSize);
+};
+
+function deleteGrid(size = defaultSize){
+    screen.innerHTML = '';
+};
+
+function reloadgrid() {
+    deleteGrid();
+    makeGrid();
+};
 
 
-//target: div.pixel
+sizeChoice.onclick = reloadgrid
+clearBtn.onclick = reloadgrid
+colorChoice.onclick = () => {colorMode = defaultMode}
+rainbowBtn.onclick = () => {colorMode = 'rainbow'}
+eraserBtn.onclick = () => {colorMode = 'erase'}
 
-create16x16Screen()
-//create64x64Screen()
-console.log(color)
-
-//console.log(b)
+window.onload = () => {
+    makeGrid(defaultSize);
+    sizeChoice.value = 16
+    actualColor = defaultColor
+    actualSize = defaultSize
+    colorMode = defaultMode
+    colorChoice.value = defaultColor
+};

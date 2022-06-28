@@ -28,30 +28,52 @@ body {
 
 .menu {
     width: 250px;
-    text-align: ;
+    flex-direction: column;
 }
 
 .menu h1 {
     padding: 10px;
+    font-size: 48px;
 }
 
 .menu p {
-    padding: 10px;
-}
-.menu label {
-    padding: 5px;
+    padding: 15px;
+    font-size: 20px;
 }
 
 #colorpicker {
-    width: 35px;
-    height: 35px;
-    padding: 3px;
-    border-width: 1px;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    border-width: 2px;
+    border-color: var(--color2);
+}
+
+#sizes {
+    width: 100px;
+    font-size: 20px;
+}
+
+button{
+    width: 160px;
+    height: 50px;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    border-color: var(--color2);
+    font-size: 20px;
+}
+
+button:hover {
+    
+    border-color: var(--color2);
+    color: var(--color2);
 }
 
 .screen {
     display: grid;
     
+    margin-bottom: 100px;
     width: 600px;
     height: 600px;
     background-color: white;
@@ -59,22 +81,3 @@ body {
     overflow: hidden;
     
 }
-
-.size64x64 {
-    grid-template-columns: repeat(64, 1fr);
-    grid-template-rows: repeat(64, 1fr);
-}
-
-.size16x16 {
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
-}
-
-.pixel {
-    background-color: white;
-
-}
-
-/*.pixel:hover {
-    background-color: var(--color4);
-}*/
